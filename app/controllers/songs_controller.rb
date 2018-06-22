@@ -12,11 +12,11 @@ class SongsController < ApplicationController
  post "/songs" do
    @song = Song.create(params[:song])
 
-   redirect to "/songs/#{song.id}"
+   redirect to "/songs/#{song.slug}"
  end
 
- get "/songs/:id" do
-   @song = Song.find(params[:id])
+ get "/songs/:slug" do
+   @song = Song.find_by(slug: params[:slug])
    erb :"/songs/show"
  end
 
