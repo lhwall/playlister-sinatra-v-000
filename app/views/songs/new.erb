@@ -1,9 +1,6 @@
 <form action="/songs" method="post">
   <p>Create a new artist: <input type="text" name="song[artist]" value=""></p>
-  <p>Choose an existing artist:</p>
-<%Artist.all.each do |artist| %>
-<input type="checkbox" name="song[artist_id]" id="<%=artist.name%>" value="<%=artist.name%>"><%=artist.name%></input>
-<%end%>
+
 </br>
 <label> Song Name </label> <input type="text" name="Name"> </br>
   <p>Create a new genre: <input type="text" name="song[genre]" value=""></p>
