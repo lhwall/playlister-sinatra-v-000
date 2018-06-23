@@ -29,7 +29,7 @@ class SongsController < ApplicationController
    if @song.artist
    @artist = @song.artist
  end
- if song.genres
+ if @song.genres
    @genres = @song.genres
  end
    erb :"/songs/show"
