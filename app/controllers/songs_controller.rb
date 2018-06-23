@@ -11,7 +11,7 @@ class SongsController < ApplicationController
 
  post "/songs" do
 #binding.pry
-   @song = Song.create(:name => params[:name])
+   @song = Song.create(:name => params[:Name])
    if !params[:"Artist Name"].empty?
      @song.artist_id = Artist.create(:name => params[:"Artist Name"]).id
    else
