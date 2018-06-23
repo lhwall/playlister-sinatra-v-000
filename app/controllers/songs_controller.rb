@@ -18,7 +18,7 @@ class SongsController < ApplicationController
   #    #binding.pry
   #    @song.artist_id = params[:song][:artist_id].to_i
   #  end
-   if !params[:genres].empty?
+   if params[:genres]
    @song.genres << params[:genres][]
  end
    @song.save
