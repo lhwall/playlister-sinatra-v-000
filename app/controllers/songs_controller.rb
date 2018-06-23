@@ -25,10 +25,10 @@ class SongsController < ApplicationController
 
  get "/songs/:slug" do
    @song = Song.find_by_slug(params[:slug])
-   if !@song.artist.empty?
+   if @song.artist
    @artist = @song.artist
  end
- if !song.genres.empty?
+ if song.genres
    @genres = @song.genres
  end
    erb :"/songs/show"
