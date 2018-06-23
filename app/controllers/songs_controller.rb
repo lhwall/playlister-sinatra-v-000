@@ -14,19 +14,19 @@ class SongsController < ApplicationController
    @song = Song.create(:name => params[:Name])
 
      @song.artist_id = Artist.create(:name => params[:"Artist Name"]).id
-   else
-     #binding.pry
-     @song.artist_id = params[:song][:artist_id].to_i
-   end
- #   if !params[:genres].empty?
- #   @song.genres << params[:genres][]
- # end
+  #  else
+  #    #binding.pry
+  #    @song.artist_id = params[:song][:artist_id].to_i
+  #  end
+   if !params[:genres].empty?
+   @song.genres << params[:genres][]
+ end
    @song.save
    redirect to "/songs/#{@song.slug}"
  end
 
  get "/songs/:slug" do
-   binding.pry
+   #binding.pry
    @song = Song.find_by_slug(params[:slug])
    if @song.artist
    @artist = @song.artist
