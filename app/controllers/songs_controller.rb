@@ -1,7 +1,7 @@
 require 'rack-flash'
 
 class SongsController < ApplicationController
-  use Rack::Flash
+  use Sinatra::Flash
 
   get "/songs" do
     @songs = Song.all
@@ -19,7 +19,6 @@ class SongsController < ApplicationController
    @song.genre_ids << params[:genres][]
    @song.save
    flash[:message] = "Successfully created song."
-
    redirect ("/songs/#{@song.slug}")
  end
 
