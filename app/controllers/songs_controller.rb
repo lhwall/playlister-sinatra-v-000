@@ -14,7 +14,7 @@ class SongsController < ApplicationController
    @song = Song.create(:name => params[:Name])
    @song.artist = Artist.find_or_create_by(:name => params["Artist Name"])  #  else
    binding.pry
-   @song.genre_ids << params[:genres][]
+   @song.genre_ids << params[:genres]
    @song.save
    redirect ("/songs/#{@song.slug}")
  end
