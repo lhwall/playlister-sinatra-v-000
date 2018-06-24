@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class SongsController < ApplicationController
+  use Sinatra::Flash
 
   get "/songs" do
     @songs = Song.all
@@ -10,21 +13,24 @@ class SongsController < ApplicationController
   end
 
  post "/songs" do
-   #binding.pry
-   @song = Song.create(:name => params[:song][:name])
-   if !params[:song][:artist].empty?
-     @song.artist = Artist.create(:name => params[:song][:artist])
-   end
-   @artist = @song.artist
+#binding.pry
+   @song = Song.create(:name => params[:Name])
+   @song.artist = Artist.find_or_create_by(:name => params["Artist Name"])  #  else
+   @song.genre_ids << params[:genres][]
    @song.save
-   #binding.pry
-   redirect to "songs/#{@song.slug}"
+   flash[:message] = "Successfully created song."
+   redirect ("/songs/#{@song.slug}")
  end
 
  get "/songs/:slug" do
+   #binding.pry
    @song = Song.find_by_slug(params[:slug])
+   if @song.artist
    @artist = @song.artist
-   @genre = @song.genres
+ end
+ if @song.genres
+   @genres = @song.genres
+ end
    erb :"/songs/show"
  end
 
